@@ -84,22 +84,69 @@ var specialCharacters = [
   '.'
 ];
 
+function generatePassword () {
+// Obtain Password Length Variable and return message until parameters met.
+
+var length = parseInt(
+  prompt('How many characters would you like in the password?')
+);
+while (isNaN(length) || length < 8 || length > 128) 
+length = Number(prompt("Selection must be 8 - 128 characters, how many characters would you like in the password?"));
+
+ var hasSpecialCharacters = confirm(
+  ' Would you like to have special characters.'
+);
+
+var hasNumericCharacters = confirm(
+  'Would you like to have numeric characters.'
+);
+
+var hasLowerCasedCharacters = confirm(
+  'Would you like to have lowercase characters.'
+);
+
+var hasUpperCasedCharacters = confirm(
+  'Would you like to have uppercase characters.'
+);
+
+// confirm user has made atleast one character selection
+
+if 
+(hasSpecialCharacters === false && hasNumericCharacters === false && 
+hasLowerCasedCharacters === false && hasUpperCasedCharacters === false) 
+{
+  alert('One character type must be selected!');
+  return;
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// function generatePassword () {
+//   var finalPassword = '';
+  
+
+
+
+
+
+
+
+
+
 // var finalArraySelection = [];
 
-
-// Function Start User input for password options 
-
-function generatePassword () {
-
-  var finalPassword = '';
-
-  var length = parseInt(
-    prompt('How many characters do you want the password to have?')
-  );
-
-
     /*
-    
     if(containsNumber) {
       finalArraySelection.concat(numericCharacters)
     }
@@ -108,19 +155,19 @@ function generatePassword () {
     }
   */
 
-  for(var i = 0; i < length; i++){
+//   for(var i = 0; i < length; i++){
 
-    var randomNumber = Math.floor(Math.random()*lowerCasedCharacters.length);
+//     var randomNumber = Math.floor(Math.random()*lowerCasedCharacters.length);
 
-    var randomPickedCharacter = lowerCasedCharacters[randomNumber];
+//     var randomPickedCharacter = lowerCasedCharacters[randomNumber];
 
-    finalPassword = finalPassword + randomPickedCharacter;
-  }
+//     finalPassword = finalPassword + randomPickedCharacter;
+//   }
 
 
 
-   return finalPassword;
-}
+//    return finalPassword;
+// }
 
 
 
