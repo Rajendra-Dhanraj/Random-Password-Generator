@@ -116,8 +116,8 @@ includeLowerCasedCharacters === false && includeUpperCasedCharacters === false)
   
   passwordSelections();
 }
-// Save the user selections
 
+// Save the user selections
 var passwordOptions = {
 
   length: length,
@@ -140,47 +140,54 @@ function getRandom(array) {
 }
 
 // function to create password based on user selections
-
 function generatePassword() {
   var options = passwordSelections();
-  var result = [];
+  var final = [];
 
   // store selected character types 
   var userSelectedCharacters = [];
   // stores character from each array that user selected 
   var assuredCharacters = [];
 
+//add numberic characters to assured characters variable
+  if (options.includeNumericCharacters) {
+    userSelectedCharacters  = userSelectedCharacters.concat(numericCharacters);
+    assuredCharacters.push(getRandom(numericCharacters));
+  }
 
+//add lower case characters to assured variabile
+  if (options.includeLowerCasedCharacters) {
+    userSelectedCharacters = userSelectedCharacters.concat(lowerCasedCharacters);
+    assuredCharacters.push(getRandom(lowerCasedCharacters));
+  }
 
+//add upper case characters to assured variable
+  if (options.includeUpperCasedCharacters) {
+    userSelectedCharacters = userSelectedCharacters.concat(upperCasedCharacters);
+    assuredCharacters.push(getRandom(upperCasedCharacters));
+  }
 
+  //add special characters to assured characters variable
+  if (options.includeSpecialCharacters) {
+    userSelectedCharacters = userSelectedCharacters.concat(specialCharacters);
+    assuredCharacters.push(getRandom(specialCharacters));
+  }
 
-// function generatePassword () {
-//   var finalPassword = '';
-  
-// var finalArraySelection = [];
+  for (var i = 0; i < options.length; i++) {
+    var possibleCharacter = getRandom(userSelectedCharacters);
 
-    /*
-    if(containsNumber) {
-      finalArraySelection.concat(numericCharacters)
-    }
-    if(containsLowerCase) {
-      finalArraySelection.concat(lowerCasedCharacters)
-    }
-  */
+    final.push(possibleCharacter);
+  }
 
-//   for(var i = 0; i < length; i++){
+  for (var i = 0; i < assuredCharacters.length; i++) {
+    final[i] = assuredCharacters[i];
+  }
 
-//     var randomNumber = Math.floor(Math.random()*lowerCasedCharacters.length);
+// final, string includes all random password selections 
+  return final.join('');
+}
 
-//     var randomPickedCharacter = lowerCasedCharacters[randomNumber];
-
-//     finalPassword = finalPassword + randomPickedCharacter;
-//   }
-
-
-//    return finalPassword;
-// }
-
+//Output connection to HTML
 
 
 
