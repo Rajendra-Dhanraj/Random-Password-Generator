@@ -84,7 +84,7 @@ var specialCharacters = [
   '.'
 ];
 
-function generatePassword () {
+function passwordSelections () {
 // Obtain Password Length Variable and return message until parameters met.
 
 var length = parseInt(
@@ -93,40 +93,62 @@ var length = parseInt(
 while (isNaN(length) || length < 8 || length > 128) 
 length = Number(prompt("Selection must be 8 - 128 characters, how many characters would you like in the password?"));
 
- var hasSpecialCharacters = confirm(
-  ' Would you like to have special characters.'
+var includeNumericCharacters = confirm(
+  'Would you like to have numeric characters?'
+);
+var includeLowerCasedCharacters = confirm(
+  'Would you like to have lowercase characters?'
+);
+var includeUpperCasedCharacters = confirm(
+  'Would you like to have uppercase characters?'
+);
+var includeSpecialCharacters = confirm(
+  'Would you like to have special characters?'
 );
 
-var hasNumericCharacters = confirm(
-  'Would you like to have numeric characters.'
-);
-
-var hasLowerCasedCharacters = confirm(
-  'Would you like to have lowercase characters.'
-);
-
-var hasUpperCasedCharacters = confirm(
-  'Would you like to have uppercase characters.'
-);
-
-// confirm user has made atleast one character selection
+// confirm user has made atleast one character selection or return to password selections
 
 if 
-(hasSpecialCharacters === false && hasNumericCharacters === false && 
-hasLowerCasedCharacters === false && hasUpperCasedCharacters === false) 
+(includeSpecialCharacters === false && includeNumericCharacters === false && 
+includeLowerCasedCharacters === false && includeUpperCasedCharacters === false) 
 {
-  alert('One character type must be selected!');
-  return;
+  alert('One character type must be selected, please try again!');
+  
+  passwordSelections();
+}
+// Save the user selections
+
+var passwordOptions = {
+
+  length: length,
+  includeNumericCharacters: includeNumericCharacters,
+  includeUpperCasedCharacters: includeUpperCasedCharacters,
+  includeLowerCasedCharacters: includeLowerCasedCharacters,
+  includeSpecialCharacters: includeSpecialCharacters
+};
+
+return passwordOptions;
+
 }
 
+// function to pick random index from applicable array
+function getRandom(array) {
+  var randomIndex = Math.floor(Math.random() * array.length);
+  var randomElement = array[randomIndex];
 
-
-
+  return randomElement;
 }
 
+// function to create password based on user selections
 
+function generatePassword() {
+  var options = passwordSelections();
+  var result = [];
 
-
+  // store selected character types 
+  var userSelectedCharacters = [];
+  // stores character from each array that user selected 
+  var assuredCharacters = [];
 
 
 
@@ -135,15 +157,6 @@ hasLowerCasedCharacters === false && hasUpperCasedCharacters === false)
 // function generatePassword () {
 //   var finalPassword = '';
   
-
-
-
-
-
-
-
-
-
 // var finalArraySelection = [];
 
     /*
@@ -165,11 +178,8 @@ hasLowerCasedCharacters === false && hasUpperCasedCharacters === false)
 //   }
 
 
-
 //    return finalPassword;
 // }
-
-
 
 
 
